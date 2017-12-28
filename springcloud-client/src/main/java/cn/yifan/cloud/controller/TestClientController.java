@@ -2,6 +2,7 @@ package cn.yifan.cloud.controller;
 
 import cn.yifan.cloud.common.ResponseMsg;
 import cn.yifan.cloud.service.TestClientService;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,10 @@ public class TestClientController {
     private TestClientService testClientService;
 
     @RequestMapping(value="/list",method=RequestMethod.GET)
-    public ResponseMsg getList(){
-        return testClientService.list();
+    public String getList(){
+        String  msg = testClientService.list();
+        System.out.println("==========="+msg);
+        return msg;
     }
 
 }

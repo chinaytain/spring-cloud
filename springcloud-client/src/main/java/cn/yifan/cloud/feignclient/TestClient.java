@@ -1,6 +1,8 @@
 package cn.yifan.cloud.feignclient;
 
 import cn.yifan.cloud.common.ResponseMsg;
+import com.alibaba.fastjson.JSON;
+import com.google.gson.Gson;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,14 +15,14 @@ public interface TestClient {
 	@RequestMapping(value="/test/list",method=RequestMethod.GET)
 	@ResponseBody//此处需要添加json注解
 	//此方法需要根据实际情况添加参数@RequestParam(value = "param", required = false)
-	public ResponseMsg list();
+	public String list();
 
 	public static class TestHystrix  implements TestClient {
 
 		//@RequestParam(value="param",required=false) 此处list方法中可以添加校验
 
-		public ResponseMsg list() {
-			return new ResponseMsg().failure("参数错误");
+		public String list() {
+			return JSON.toJSONString(new ResponseMsg().failure("服务异常"));
 		}
 
 	}
