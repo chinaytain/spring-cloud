@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 public class TestClientService {
 	
 	@Autowired
-	private TestClient feignTestClient;
+	private TestClient testClient;
 
 	public ResponseMsg list(){
-		return feignTestClient.list();
+		return testClient.list();
 	}
 	
 }
